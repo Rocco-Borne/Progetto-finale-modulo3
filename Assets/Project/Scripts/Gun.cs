@@ -8,12 +8,13 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] float _fireRate = 0.5f;
-    [SerializeField] int _fireRange = 10;
-    private float timer=0;
-    private float Dist = 10000;
-    [SerializeField] private GameObject Bullet;
-    
-    
+    [SerializeField] float _fireRange = 10f;
+    private float timer = 0f;
+    private float Dist;
+    [SerializeField]private Bullet Bullet;
+
+
+
     void Start()
     {
         
@@ -32,23 +33,21 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (Dist < 10)
+        Enemy enemy =FindNearestEnemy();
+        if (Dist < _fireRange)
         {
-            Instantiate(Bullet, transform.position, transform.rotation);
-            
+            Bullet clone = Instantiate(Bullet, transform.position, transform.rotation);
+            clone.SetDir((enemy.transform.position-transform.position).normalized);
         }
     }
-    public GameObject FindNearestEnemy()
+    public Enemy FindNearestEnemy()
     {
-        Dist = 10000;
-        GameObject nearestEnemy;
-        GameObject [] _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Dist = 10000f;
+        Enemy nearestEnemy=null;
+        Enemy [] _enemies = Transform.FindObjectsOfType<Enemy>();
         for (int i=0; i < _enemies.Length; i++)
         {
-            float distX =  (transform.position.x - _enemies[i].transform.position.x );
-            float distY = (transform.position.y - _enemies[i].transform.position.y);
-            Vector2 dir= new Vector2(distX, distY);
-            float Distance = dir.magnitude;
+            float Distance = (transform.position-_enemies[i].transform.position).magnitude;
             if (Distance < Dist)
             {
                 Dist = Distance;

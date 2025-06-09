@@ -14,8 +14,8 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, _lifeTime);
-        GetComponent<Rigidbody2D>();
-
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.AddForce(_dir * _speed, ForceMode2D.Impulse);
     }
 
     // Update is called once per frame
