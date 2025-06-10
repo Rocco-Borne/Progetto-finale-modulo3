@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -22,5 +23,15 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.MovePosition(Vector2.MoveTowards(_rb.transform.position, _player.transform.position, _speed*Time.deltaTime));
+    }
+    private void OnCollision2D(Collision2D collision)
+    {
+        LifeController life= collision.collider.GetComponentInParent<LifeController>();
+        if (life != null )
+        {
+            life.AddHp(-_dmg);
+        }
+        gameObject.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
