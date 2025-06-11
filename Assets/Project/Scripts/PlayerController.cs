@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed=3f ;
     private float horizontal;
     private float vertical;
-    protected Vector2 _direction;
+    public Vector2 _direction;
     Rigidbody2D _rb;
     void Start()
     {
@@ -18,13 +18,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void FixedUpdate()
-    {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         _direction = new Vector2(horizontal, vertical);
+    }
+    private void FixedUpdate()
+    {
+
         _rb.velocity = _direction*_speed;
     }
 }

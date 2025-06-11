@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5800113461309412712}
   - component: {fileID: 7704625013378903360}
   - component: {fileID: 5850758662158239191}
+  - component: {fileID: 5875950111044499260}
+  - component: {fileID: 3351929329717732717}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -493647738, guid: 3bcb7877229a5334da528f2f0872b5c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9492b97da307f4caf64a53daafaad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHp: 20
-  _maxHp: 20
+  _currentHp: 1000
+  _maxHp: 1000
   _fullHpOnStart: 1
   _defeatBheaviour: 1
 --- !u!114 &5800113461309412712
@@ -118,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dmg: 5
   _speed: 3
+  _dir: {x: 0, y: 0}
 --- !u!50 &7704625013378903360
 Rigidbody2D:
   serializedVersion: 4
@@ -190,3 +193,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &5875950111044499260
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114555442478092306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 645e8f9e70111f94fb11e7dbddc16ac1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3351929329717732717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114555442478092306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9846604a25697364d81d78ac8d94ac9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyAnimator: {fileID: 5875950111044499260}

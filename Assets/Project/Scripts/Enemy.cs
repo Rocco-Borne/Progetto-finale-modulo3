@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _speed = 4f;
     private GameObject _player;
     Rigidbody2D _rb;
+    public Vector2 _dir;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -18,11 +19,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _dir = (_player.transform.position - _rb.transform.position).normalized;
     }
     private void FixedUpdate()
     {
         _rb.MovePosition(Vector2.MoveTowards(_rb.transform.position, _player.transform.position, _speed*Time.deltaTime));
+        
     }
     private void OnCollision2D(Collision2D collision)
     {
